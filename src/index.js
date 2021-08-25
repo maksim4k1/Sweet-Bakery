@@ -7,7 +7,7 @@ import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './redux/rootReducer';
 import App from './App';
-import './index.css';
+import './styles/index.css';
 
 const store = createStore(
   rootReducer,

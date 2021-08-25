@@ -3,6 +3,7 @@ import styled from "styled-components";
 import burger from "../../../assets/svg/burger.svg";
 import basket from "../../../assets/svg/basket.svg";
 import SweetBakery from "../../../assets/svg/SweetBakery.svg";
+import Menu from "../../Menu";
 
 const HeaderElement = styled.header`
   width: 100%;
@@ -42,6 +43,7 @@ function Header () {
         <MenuButton>
           <img src={burger} alt="Menu" />
         </MenuButton>
+        <Menu/>
         <Logo src={SweetBakery} alt="Sweet Bakery" />
         <BasketButton>
           <img src={basket} alt="Basket" />
