@@ -4,6 +4,7 @@ import burger from "../../../assets/svg/burger.svg";
 import basket from "../../../assets/svg/basket.svg";
 import SweetBakery from "../../../assets/svg/SweetBakery.svg";
 import Menu from "../../Menu";
+import Basket from "../../Basket";
 
 const HeaderElement = styled.header`
   width: 100%;
@@ -49,6 +50,7 @@ function Header () {
           <img src={basket} alt="Basket" />
           <BasketCount>12</BasketCount>
         </BasketButton>
+        <Basket/>
       </Container>
     </HeaderElement>
   );
