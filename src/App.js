@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { closeMenuAction, closeBasketAction } from './redux/actions';
+import Footer from './components/UI/Footer';
 
 function App({location, closeMenu, closeBasket}) {
   useEffect(() => {
@@ -16,6 +17,11 @@ function App({location, closeMenu, closeBasket}) {
     <div className="App">
       <Header/>
       <AppRouters/>
+      {
+        location !== "/admin"
+        ? <Footer/>
+        : ""
+      }
     </div>
   );
 }

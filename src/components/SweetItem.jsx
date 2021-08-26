@@ -12,22 +12,38 @@ const Item = styled.li`
   flex-flow: column;
   ${gap("12px")}
   background: var(--main-bg-grey);
+  @media screen and (max-width: 610px){
+    &{
+      width: 325px;
+      height: 520px;
+      ${gap("15px")}
+    }
+  }
 `;
 
 const Image = styled.img`
-  width: 230px;
+  width: 100%;
   height: 230px;
   object-fit: cover;
   object-position: center;
+  @media screen and (max-width: 610px){
+    &{
+      height: 290px;
+    }
+  }
 `;
 const Content = styled.div`
   display: flex;
   flex-flow: column;
-  ${gap("11px")}
+  @media screen and (max-width: 610px){
+    &{
+      ${gap("14px")}
+    }
+  }
 `;
 const Name = styled.h3`
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
   white-space: no-wrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -35,6 +51,11 @@ const Name = styled.h3`
 const Ingredients = styled.p`
   margin: 0 0 1px;
   font-size: 14px;
+  @media screen and (max-width: 610px){
+    &{
+      margin: 0 0 4px;
+    }
+  }
 `;
 const Price = styled.div`
   font-size: 18px;

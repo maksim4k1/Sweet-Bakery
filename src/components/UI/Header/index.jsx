@@ -14,6 +14,11 @@ const HeaderElement = styled.header`
   height: 101px;
   margin: 0 0 105px;
   background: var(--main-purple);
+  @media screen and (max-width: 610px){
+    &{
+      height: 75px;
+    }
+  }
 `;
 const Container = styled.div`
   height: 100%;
@@ -21,9 +26,18 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 610px){
+    &{
+      padding: 0 16px 0 18px;
+    }
+  }
 `;
 const MenuButton = styled.button`
-  
+  @media screen and (max-width: 610px){
+    &{
+      margin: 0 27px 0 0;
+    }
+  }
 `;
 const BasketButton = styled.button`
   width: 53px;
@@ -33,6 +47,11 @@ const BasketButton = styled.button`
 `;
 const Logo = styled.img`
   height: 55px;
+  @media screen and (max-width: 610px){
+    &{
+      height: 42px;
+    }
+  }
 `;
 const BasketCount = styled.span`
   color: var(--main-white);
