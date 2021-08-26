@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import close from "../assets/svg/close.svg";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { gap, navigation, closeNavigationButton, navigationContent } from "../styles/mixins";
 import { connect } from "react-redux";
 import { closeMenuAction } from "../redux/actions"
@@ -52,7 +52,7 @@ const MenuLink = styled.div`
   }
 `;
 
-function Menu ({isOpenMenu, closeMenu}) {
+function Menu ({isOpenMenu, closeMenu, location}) {
   return(
     <MenuElement style={isOpenMenu ? {transform: "translateX(0)"} : {}}>
       <CloseButton onClick={closeMenu}>
@@ -67,7 +67,11 @@ function Menu ({isOpenMenu, closeMenu}) {
           Our delivery working from 09:00 to 23:00
         </Info>
         <MenuLink>
-          <Link to="/admin">Go to admin page</Link>
+          {
+            location.pathname !== "/admin"
+            ? <Link to="/admin">Go to admin page</Link>
+            : <Link to="/">Go to main page</Link>
+          }
         </MenuLink>
       </Content>
     </MenuElement>
@@ -82,4 +86,4 @@ const mapDispatchToProps = {
   closeMenu: closeMenuAction,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Menu));

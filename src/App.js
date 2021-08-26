@@ -18,7 +18,7 @@ function App({location, closeMenu, closeBasket}) {
       <Header/>
       <AppRouters/>
       {
-        location !== "/admin"
+        location.pathname !== "/admin"
         ? <Footer/>
         : ""
       }

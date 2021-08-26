@@ -7,7 +7,7 @@ import SweetBakery from "../../../assets/svg/SweetBakery.svg";
 import { openMenuAction, openBasketAction } from "../../../redux/actions"
 import Menu from "../../Menu";
 import Basket from "../../Basket";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 const HeaderElement = styled.header`
   width: 100%;
@@ -58,8 +58,13 @@ const BasketCount = styled.span`
   font-size: 18px;
   font-weight: 700;
 `;
+const Text = styled.div`
+  color: var(--main-white);
+  font-size: 18px;
+  font-weight: 700;
+`;
 
-function Header ({openMenu, openBasket, count}) {
+function Header ({openMenu, openBasket, count, location}) {
   return(
     <HeaderElement>
       <Container>
@@ -70,10 +75,14 @@ function Header ({openMenu, openBasket, count}) {
         <Link to="/">
           <Logo src={SweetBakery} alt="Sweet Bakery" />
         </Link>
-        <BasketButton onClick={openBasket}>
-          <img src={basket} alt="Basket" />
-          <BasketCount>{count}</BasketCount>
-        </BasketButton>
+        {
+          location.pathname !== "/admin"
+          ? <BasketButton onClick={openBasket}>
+            <img src={basket} alt="Basket" />
+            <BasketCount>{count}</BasketCount>
+          </BasketButton>
+          : <Text>admin  page</Text>
+        }
         <Basket/>
       </Container>
     </HeaderElement>
@@ -89,4 +98,4 @@ const mapDispatchToProps = {
   openBasket: openBasketAction,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));
