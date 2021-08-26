@@ -11,6 +11,12 @@ export const gap = (gapX, gapY=gapX) => `
   -ms-row-gap: ${gapY};
 `;
 
+export const container = `
+  max-width: 875px;
+  padding: 0 25px;
+  margin: 0 auto;
+`;
+
 export const navigation = () => `
   width: 316px;
   height: 100%;

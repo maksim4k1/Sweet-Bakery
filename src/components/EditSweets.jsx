@@ -3,17 +3,17 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import { gap } from "../styles/mixins";
 import { getAllPastryAction } from "../redux/actions";
-import SweetItem from "./SweetItem";
+import EditSweetItem from "./EditSweetItem";
 import ClearList from "./ClearList";
 
 const List = styled.ul`
+  margin: 0 0 36px;
   display: flex;
-  flex-flow: wrap;
-  justify-content: center;
-  ${gap("26px", "28px")}
+  flex-flow: column;
+  ${gap("7px")}
 `;
 
-function SweetsList ({pastry, getAllPastry}) {
+function EditSweets ({pastry, getAllPastry}) {
   useEffect(() => {
     getAllPastry();
   }, [getAllPastry]);
@@ -22,8 +22,8 @@ function SweetsList ({pastry, getAllPastry}) {
     <List>
       {
         pastry.length
-        ? pastry.map(sweet => {
-          return <SweetItem key={sweet.id} {...sweet} />
+        ? pastry.map(({id, name, inStock, cost}) => {
+          return <EditSweetItem key={id} id={id} name={name} inStock={inStock} cost={cost} />
         })
         : <ClearList/>
       }
@@ -39,4 +39,4 @@ const mapDispatchToProps = {
   getAllPastry: getAllPastryAction,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SweetsList);
+export default connect(mapStateToProps, mapDispatchToProps)(EditSweets);

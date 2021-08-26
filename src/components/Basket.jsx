@@ -13,7 +13,7 @@ const BasketElement = styled.div`
   color: var(--main-white);
   background: var(--main-purple);
   box-shadow: -4px 4px 10px var(--main-shadow-black);
-  transform: translateX(100%);
+  transform: translateX(110%);
 `;
 const CloseButton = styled.button`
   ${closeNavigationButton}

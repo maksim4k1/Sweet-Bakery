@@ -13,7 +13,7 @@ const MenuElement = styled.div`
   font-size: 18px;
   background: var(--main-white);
   box-shadow: 4px 4px 10px var(--main-shadow-black);
-  transform: translateX(-100%);
+  transform: translateX(-110%);
 `;
 const CloseButton = styled.button`
   ${closeNavigationButton}
