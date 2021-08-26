@@ -1,4 +1,6 @@
-import { CLOSE_BASKET, CLOSE_MENU, GET_ALL_PASTRY, OPEN_BASKET, OPEN_MENU } from "./types";
+import { CLOSE_BASKET, CLOSE_MENU, GET_ALL_PASTRY, OPEN_BASKET, OPEN_MENU, ADD_PASTRY_TO_BASKET, COUNT_TOTAL, GET_COUNT } from "./types";
+
+const URL = "http://localhost:1717/pastry";
 
 export function openMenuAction() {
   return dispatch => {
@@ -20,8 +22,35 @@ export function closeBasketAction() {
 }
 export function getAllPastryAction() {
   return async dispatch => {
-    const response = await fetch("http://localhost:1717/pastry");
+    const response = await fetch(`${URL}`);
     const data = await response.json();
     dispatch({ type: GET_ALL_PASTRY, payload: data });
+  }
+}
+export function addPastryToBasketAction(id){
+  return async dispatch => {
+    const response = await fetch(`${URL}/detail/${id}`);
+    const data = await response.json();
+    const element = {
+      id: data.id,
+      name: data.name,
+      inStock: 1,
+      cost: data.cost
+    }
+    
+    dispatch({ type: ADD_PASTRY_TO_BASKET, payload: element });
+    dispatch({ type: COUNT_TOTAL });
+    dispatch({ type: GET_COUNT, payload: data.cost });
+
+    await fetch(`${URL}/update/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        inStock: data.inStock - 1
+      })
+    });
+    dispatch(getAllPastryAction());
   }
 }

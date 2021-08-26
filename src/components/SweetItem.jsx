@@ -1,5 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
+import { addPastryToBasketAction } from "../redux/actions";
 import { gap } from "../styles/mixins";
 
 const Item = styled.li`
@@ -56,7 +58,7 @@ const Button = styled.button`
 `;
 
 
-function SweetItem ({id, name, image, ingredients, inStock, cost}) {
+function SweetItem ({id, name, image, ingredients, inStock, cost, addToBasket}) {
   return(
     <Item>
       <Image src={image}/>
@@ -70,7 +72,7 @@ function SweetItem ({id, name, image, ingredients, inStock, cost}) {
           inStock ? {} : {background: "var(--main-grey)"}
         }
         disabled={!inStock}
-        id={id}
+        onClick={() => addToBasket(id)}
       >
         {inStock ? "Add to cart" : "Not avaliable"}
       </Button>
@@ -78,4 +80,8 @@ function SweetItem ({id, name, image, ingredients, inStock, cost}) {
   );
 }
 
-export default SweetItem;
+const mapDispatchToProps = {
+  addToBasket: addPastryToBasketAction
+}
+
+export default connect(null, mapDispatchToProps)(SweetItem);
