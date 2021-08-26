@@ -7,6 +7,7 @@ import SweetBakery from "../../../assets/svg/SweetBakery.svg";
 import { openMenuAction, openBasketAction } from "../../../redux/actions"
 import Menu from "../../Menu";
 import Basket from "../../Basket";
+import { Link } from "react-router-dom";
 
 const HeaderElement = styled.header`
   width: 100%;
@@ -47,7 +48,9 @@ function Header ({openMenu, openBasket}) {
           <img src={burger} alt="Menu" />
         </MenuButton>
         <Menu/>
-        <Logo src={SweetBakery} alt="Sweet Bakery" />
+        <Link to="/">
+          <Logo src={SweetBakery} alt="Sweet Bakery" />
+        </Link>
         <BasketButton onClick={openBasket}>
           <img src={basket} alt="Basket" />
           <BasketCount>12</BasketCount>
