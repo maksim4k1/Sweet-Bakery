@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
 import { gap } from "../styles/mixins";
+import { getAllPastryAction } from "../redux/actions";
 import SweetItem from "./SweetItem";
 
 const List = styled.ul`
@@ -16,12 +18,16 @@ const ClearList = styled.div`
   text-align: center;
 `;
 
-function SweetsList ({sweets}) {
+function SweetsList ({pastry, getAllPastry}) {
+  useEffect(() => {
+    getAllPastry();
+  }, [getAllPastry]);
+
   return(
     <List>
       {
-        sweets
-        ? sweets.map(sweet => {
+        pastry.length
+        ? pastry.map(sweet => {
           return <SweetItem key={sweet.id} {...sweet} />
         })
         : <ClearList>Sweets out of stock</ClearList>
@@ -30,4 +36,12 @@ function SweetsList ({sweets}) {
   );
 }
 
-export default SweetsList;
+const mapStateToProps = state => ({
+  pastry: state.pastry
+});
+
+const mapDispatchToProps = {
+  getAllPastry: getAllPastryAction,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SweetsList);

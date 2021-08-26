@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { gap } from "../styles/mixins";
 
 const Item = styled.li`
-  width: 445px;
-  height: 257px;
+  width: 257px;
+  height: 445px;
   padding: 13px;
   display: flex;
   flex-flow: column;
@@ -41,6 +41,7 @@ const Price = styled.div`
 const Button = styled.button`
   width: 100%;
   height: 30px;
+  margin: auto 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,17 +59,17 @@ function SweetItem ({id, name, image, ingredients, inStock, cost}) {
         <Name>{name}</Name>
         <Ingredients>{ingredients.join(", ")}</Ingredients>
         <Price>${cost}</Price>
-        <Button
-          style={
-            inStock
-            ? {background: "var(--main-purple)"}
-            : {background: "var(--main-grey)"}
-          }
-          id={id}
-        >
-          {inStock ? "Add to cart" : "Not avaliable"}
-        </Button>
       </Content>
+      <Button
+        style={
+          inStock
+          ? {background: "var(--main-purple)"}
+          : {background: "var(--main-grey)"}
+        }
+        id={id}
+      >
+        {inStock ? "Add to cart" : "Not avaliable"}
+      </Button>
     </Item>
   );
 }
