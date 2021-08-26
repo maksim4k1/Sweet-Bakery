@@ -40,7 +40,7 @@ const BasketCount = styled.span`
   font-weight: 700;
 `;
 
-function Header ({openMenu, openBasket}) {
+function Header ({openMenu, openBasket, count}) {
   return(
     <HeaderElement>
       <Container>
@@ -53,7 +53,7 @@ function Header ({openMenu, openBasket}) {
         </Link>
         <BasketButton onClick={openBasket}>
           <img src={basket} alt="Basket" />
-          <BasketCount>12</BasketCount>
+          <BasketCount>{count}</BasketCount>
         </BasketButton>
         <Basket/>
       </Container>
@@ -61,9 +61,13 @@ function Header ({openMenu, openBasket}) {
   );
 }
 
+const mapStateToProps = state => ({
+  count: state.basket.count,
+});
+
 const mapDispatchToProps = {
   openMenu: openMenuAction,
   openBasket: openBasketAction,
 }
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -48,6 +48,11 @@ const Button = styled.button`
   color: var(--main-white);
   font-size: 14px;
   font-weight: 700;
+  background: var(--main-purple);
+  transition: background 0.3s;
+  &:hover{
+    background: var(--main-dark-purple);
+  }
 `;
 
 
@@ -62,10 +67,9 @@ function SweetItem ({id, name, image, ingredients, inStock, cost}) {
       </Content>
       <Button
         style={
-          inStock
-          ? {background: "var(--main-purple)"}
-          : {background: "var(--main-grey)"}
+          inStock ? {} : {background: "var(--main-grey)"}
         }
+        disabled={!inStock}
         id={id}
       >
         {inStock ? "Add to cart" : "Not avaliable"}

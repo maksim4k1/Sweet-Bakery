@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import rootReducer from './redux/rootReducer';
+import rootReducer from './redux/reducers/rootReducer';
 import App from './App';
 import './styles/index.css';
 

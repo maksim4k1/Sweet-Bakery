@@ -1,5 +1,4 @@
-import { combineReducers } from "redux";
-import { CLOSE_BASKET, CLOSE_MENU, OPEN_BASKET, OPEN_MENU } from "./types";
+import { CLOSE_BASKET, CLOSE_MENU, OPEN_BASKET, OPEN_MENU } from "../types";
 
 const initialNavigation = {
   isOpenMenu: false,
@@ -38,8 +37,4 @@ function navigationReducer(state=initialNavigation, {type}){
   }
 }
 
-const appReducer = combineReducers({
-  navigation: navigationReducer
-})
-
-export default appReducer;
+export default navigationReducer;

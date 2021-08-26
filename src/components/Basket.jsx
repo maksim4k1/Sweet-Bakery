@@ -26,7 +26,7 @@ const ClearBasket = styled.div`
   text-align: center;
 `;
 
-function Basket ({isOpenBasket, closeBasket, basket}) {
+function Basket ({isOpenBasket, closeBasket, count}) {
   return(
     <BasketElement style={isOpenBasket ? {transform: "translateX(0)"} : {}}>
       <CloseButton onClick={closeBasket}>
@@ -34,7 +34,7 @@ function Basket ({isOpenBasket, closeBasket, basket}) {
       </CloseButton>
       <Content>
         {
-          basket
+          count
           ? ""
           : <ClearBasket>Cart  is  empty</ClearBasket>
         }
@@ -45,6 +45,7 @@ function Basket ({isOpenBasket, closeBasket, basket}) {
 
 const mapStateToProps = state => ({
   isOpenBasket: state.app.navigation.isOpenBasket,
+  count: state.basket.count
 });
 
 const mapDispatchToProps = {
