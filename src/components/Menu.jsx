@@ -2,41 +2,26 @@ import React from "react";
 import styled from "styled-components";
 import close from "../assets/svg/close.svg";
 import { Link } from "react-router-dom";
-import { gap } from "../styles/mixins";
+import { gap, navigation, closeNavigationButton, navigationContent } from "../styles/mixins";
+import { connect } from "react-redux";
+import { closeMenuAction } from "../redux/actions"
 
 const MenuElement = styled.div`
-  width: 316px;
-  height: 100%;
+  ${navigation}
   padding: 29px 0 73px;
-  display: flex;
-  flex-flow: column;
-  position: fixed;
-  top: 0;
   left: 0;
   font-size: 18px;
   background: var(--main-white);
   box-shadow: 4px 4px 10px var(--main-shadow-black);
-  z-index: 10;
   transform: translateX(-100%);
-  transition: transform 0.3s;
 `;
 const CloseButton = styled.button`
-  width: 30px;
-  height: 30px;
+  ${closeNavigationButton}
   margin: 0 29px 60px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.3s;
-  &:hover{
-    transform: rotate(90deg);
-  }
 `;
-const Navigation = styled.nav`
-  height: 100%;
+const Content = styled.nav`
+  ${navigationContent}
   padding: 0 62px;
-  display: flex;
-  flex-flow: column;
 `;
 const Contacts = styled.div`
   margin: 0 0 76px;
@@ -67,13 +52,13 @@ const MenuLink = styled.div`
   }
 `;
 
-function Menu () {
+function Menu ({isOpenMenu, closeMenu}) {
   return(
-    <MenuElement>
-      <CloseButton>
+    <MenuElement style={isOpenMenu ? {transform: "translateX(0)"} : {}}>
+      <CloseButton onClick={closeMenu}>
         <img src={close} alt="Close" />
       </CloseButton>
-      <Navigation>
+      <Content>
         <Contacts>
           <div>Contact us</div>
           <ContactsPhone href="tel:+11478344778999">+11 4783 4477 8999</ContactsPhone>
@@ -84,9 +69,17 @@ function Menu () {
         <MenuLink>
           <Link to="/admin">Go to admin page</Link>
         </MenuLink>
-      </Navigation>
+      </Content>
     </MenuElement>
   );
 }
 
-export default Menu;
+const mapStateToProps = state => ({
+  isOpenMenu: state.app.navigation.isOpenMenu,
+});
+
+const mapDispatchToProps = {
+  closeMenu: closeMenuAction,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);
