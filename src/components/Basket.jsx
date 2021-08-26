@@ -4,6 +4,7 @@ import styled from "styled-components";
 import close from "../assets/svg/close-white.svg";
 import { closeBasketAction } from "../redux/actions"
 import { closeNavigationButton, navigation, navigationContent } from "../styles/mixins";
+import BasketList from "./BasketList";
 
 const BasketElement = styled.div`
   ${navigation}
@@ -35,7 +36,7 @@ function Basket ({isOpenBasket, closeBasket, count}) {
       <Content>
         {
           count
-          ? ""
+          ? <BasketList/>
           : <ClearBasket>Cart  is  empty</ClearBasket>
         }
       </Content>
