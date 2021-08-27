@@ -4,7 +4,6 @@ import { ADD_NEW_ITEM, ADD_PASTRY_TO_BASKET, DELETE_PASTRY, EDIT_PASTRY_VALUE } 
 export function getPastryMiddleware({dispatch}){
   return next => {
     return async action => {
-      console.log(next(action))
       if(
         action.type === ADD_PASTRY_TO_BASKET ||
         action.type === EDIT_PASTRY_VALUE ||
