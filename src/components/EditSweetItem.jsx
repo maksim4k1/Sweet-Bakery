@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import editIcon from "../assets/svg/edit.svg";
 import addIcon from "../assets/svg/plus.svg";
 import removeIcon from "../assets/svg/minus.svg";
 import deleteIcon from "../assets/svg/delete.svg";
+import saveIcon from "../assets/svg/save.svg";
+import { connect } from "react-redux";
+import { editPastryValueAction, getPastryValueAction, setPastryValueAction, getAllPastryAction } from "../redux/actions";
+import EditValueInput from "./UI/EditValueInput";
 
 const Item = styled.li`
   width: 100%;
@@ -48,26 +52,54 @@ const InStockValue = styled.h5`
   font-size: 18px;
 `;
 
-function EditSweetsItem ({id, name, inStock, cost}) {
+function EditSweetsItem ({id, name, inStock, cost, getValue, setValue, changedValue, changedInput, editValue, getAllPastry}) {
+  useEffect(() => {
+    getAllPastry();
+  }, [changedInput, getAllPastry]);
+
+  function setValueToInput(type){
+    getValue(id, type);
+  }
+  function editPastryValue(value, type){
+    editValue(id, type, value);
+  }
+  function InputHandler(event){
+    setValue(event.target.value);
+  }
+
   return(
     <Item>
-      <Name>
-        {name}
-        <Button><img src={editIcon} alt="Edit" /></Button>
-      </Name>
+      {
+        changedInput.type === "name" && changedInput.id === id
+        ? <Name>
+          <EditValueInput type="text" value={changedValue ? changedValue : ""} onChange={InputHandler}/>
+          <Button onClick={() => editPastryValue(changedValue, changedInput.type)}><img src={saveIcon} alt="Save" /></Button>
+        </Name>
+        : <Name>
+          {name}
+          <Button onClick={() => setValueToInput("name")}><img src={editIcon} alt="Edit" /></Button>
+        </Name>
+      }
       <Info>
         price:
-        <PriceValue>
-          $ {cost}
-          <Button><img src={editIcon} alt="Edit" /></Button>
+        {
+        changedInput.type === "cost" && changedInput.id === id
+        ? <PriceValue>
+          <EditValueInput type="number" value={changedValue} onChange={InputHandler} style={{width: "70px"}}/>
+          <Button onClick={() => editPastryValue(changedValue, changedInput.type)}><img src={saveIcon} alt="Save" /></Button>
         </PriceValue>
+        : <PriceValue>
+          $ {cost}
+          <Button onClick={() => setValueToInput("cost")}><img src={editIcon} alt="Edit" /></Button>
+        </PriceValue>
+      }
       </Info>
       <Info>
         in stock:
         <InStockValue>
-          <Button><img src={removeIcon} alt="Remove" /></Button>
+          <Button onClick={() => editPastryValue(inStock - 1, "inStock")}><img src={removeIcon} alt="Remove" /></Button>
           {inStock}
-          <Button><img src={addIcon} alt="Add" /></Button>
+          <Button onClick={() => editPastryValue(inStock + 1, "inStock")}><img src={addIcon} alt="Add" /></Button>
         </InStockValue>
       </Info>
       <Button><img src={deleteIcon} alt="Delete" /></Button>
@@ -75,4 +107,16 @@ function EditSweetsItem ({id, name, inStock, cost}) {
   );
 }
 
-export default EditSweetsItem;
+const mapStateToProps = state => ({
+  changedValue: state.editPastry.changedValue,
+  changedInput: state.editPastry.changedInput,
+});
+
+const mapDispatchToProps = {
+  getValue: getPastryValueAction,
+  setValue: setPastryValueAction,
+  editValue: editPastryValueAction,
+  getAllPastry: getAllPastryAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditSweetsItem);
