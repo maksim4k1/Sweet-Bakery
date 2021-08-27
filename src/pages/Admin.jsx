@@ -3,6 +3,7 @@ import Title from "../components/Title";
 import EditSweets from "../components/EditSweets";
 import Button from "../components/UI/Button";
 import Modal from "../components/UI/Modal";
+import Loader from "../components/UI/Loader";
 import { connect } from "react-redux";
 import { openCreatePastryModalAction, closeCreatePastryModalAction } from "../redux/actions/appActions";
 import Form from "../components/Form";
@@ -12,6 +13,7 @@ function Admin ({isOpenModal, openModal, closeModal}) {
     <div>
       <Title/>
       <EditSweets/>
+      <Loader/>
       <Button onClick={openModal}>
         Add new shop item
       </Button>

@@ -6,8 +6,8 @@ import formReducer from "./formReducer";
 import pastryReducer from "./pastryReducer";
 
 const rootReducer = combineReducers({
-  form: formReducer,
   pastry: pastryReducer,
+  form: formReducer,
   basket: basketReducer,
   editPastry: editPastryReducer,
   app: appReducer

@@ -8,11 +8,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './redux/reducers/rootReducer';
 import App from './App';
 import './styles/index.css';
+import { getPastryMiddleware } from './redux/middlewares';
 
 const store = createStore(
   rootReducer,
   composeWithDevTools(
-    applyMiddleware(thunk)
+    applyMiddleware(thunk, getPastryMiddleware)
   )
 )
 

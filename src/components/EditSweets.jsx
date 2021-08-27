@@ -16,7 +16,7 @@ const List = styled.ul`
 function EditSweets ({pastry, getAllPastry}) {
   useEffect(() => {
     getAllPastry();
-  }, [getAllPastry, pastry]);
+  }, [getAllPastry]);
 
   return(
     <List>

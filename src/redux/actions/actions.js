@@ -1,13 +1,15 @@
 import { GET_ALL_PASTRY, ADD_PASTRY_TO_BASKET, COUNT_TOTAL, GET_COUNT, GET_PASTRY_VALUE, EDIT_PASTRY_VALUE, SET_PASTRY_VALUE, DELETE_PASTRY, EDIT_INPUT_VALUE, EDIT_CHECKBOX_VALUE, ADD_NEW_ITEM } from "../types";
-import { closeCreatePastryModalAction } from "./appActions";
+import { closeCreatePastryModalAction, showLoaderAction, hideLoaderAction } from "./appActions";
 
 const URL = "http://localhost:1717/pastry";
 
 export function getAllPastryAction() {
   return async dispatch => {
+    dispatch(showLoaderAction());
     const response = await fetch(`${URL}`);
     const data = await response.json();
     dispatch({ type: GET_ALL_PASTRY, payload: data });
+    dispatch(hideLoaderAction());
   }
 }
 export function addPastryToBasketAction(id){
@@ -20,10 +22,6 @@ export function addPastryToBasketAction(id){
       inStock: 1,
       cost: data.cost
     }
-    
-    dispatch({ type: ADD_PASTRY_TO_BASKET, payload: element });
-    dispatch({ type: COUNT_TOTAL });
-    dispatch({ type: GET_COUNT, payload: data.cost });
 
     await fetch(`${URL}/update/${id}`, {
       method: "PUT",
@@ -34,6 +32,10 @@ export function addPastryToBasketAction(id){
         inStock: data.inStock < 0 ? 0 : data.inStock - 1
       })
     });
+    
+    dispatch({ type: ADD_PASTRY_TO_BASKET, payload: element });
+    dispatch({ type: COUNT_TOTAL });
+    dispatch({ type: GET_COUNT, payload: data.cost });
   }
 }
 export function getPastryValueAction(id, type){
@@ -99,8 +101,6 @@ export function addNewItemAction(values){
       return defaultValue;
     }, {});
 
-    dispatch({ type: ADD_NEW_ITEM, payload: error });
-
     if(!error){
       await fetch(`${URL}/create`, {
         method: "POST",
@@ -123,6 +123,7 @@ export function addNewItemAction(values){
         )
       });
       
+      dispatch({ type: ADD_NEW_ITEM, payload: error });
       dispatch(closeCreatePastryModalAction());
     }
   }

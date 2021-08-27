@@ -17,3 +17,5 @@ export const EDIT_INPUT_VALUE = "EDIT_INPUT_VALUE";
 export const EDIT_CHECKBOX_VALUE = "EDIT_CHECKBOX_VALUE";
 export const ADD_NEW_ITEM = "ADD_NEW_ITEM";
 export const RELOAD_LIST = "RELOAD_LIST";
+export const SHOW_LOADER = "SHOW_LOADER";
+export const HIDE_LOADER = "HIDE_LOADER";
