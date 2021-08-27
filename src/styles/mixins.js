@@ -13,6 +13,7 @@ export const gap = (gapX, gapY=gapX) => `
 
 export const container = `
   max-width: 875px;
+  width: 100%;
   padding: 0 25px;
   margin: 0 auto;
 `;

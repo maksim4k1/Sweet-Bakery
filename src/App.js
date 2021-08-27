@@ -6,6 +6,18 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { closeMenuAction, closeBasketAction } from './redux/actions';
 import Footer from './components/UI/Footer';
+import styled from 'styled-components';
+import { container } from "./styles/mixins";
+
+const AppBody = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column;
+`;
+const Content = styled.div`
+  ${container}
+  margin-bottom: 150px;
+`;
 
 function App({location, closeMenu, closeBasket}) {
   useEffect(() => {
@@ -14,15 +26,17 @@ function App({location, closeMenu, closeBasket}) {
   }, [location, closeMenu, closeBasket]);
 
   return (
-    <div className="App">
+    <AppBody>
       <Header/>
-      <AppRouters/>
+      <Content>
+        <AppRouters/>
+      </Content>
       {
         location.pathname !== "/admin"
         ? <Footer/>
         : ""
       }
-    </div>
+    </AppBody>
   );
 }
 

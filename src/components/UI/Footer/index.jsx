@@ -5,7 +5,7 @@ const FooterElement = styled.footer`
   width: 100%;
   height: 250px;
   padding: 39px 0;
-  margin: 125px 0 0;
+  margin: auto 0 0;
   display: flex;
   flex-flow: column;
   align-items: center;

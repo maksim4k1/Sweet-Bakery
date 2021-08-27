@@ -1,12 +1,10 @@
 import React from "react";
 import Title from "../components/Title";
 import styled from "styled-components";
-import { container } from "../styles/mixins";
 import EditSweets from "../components/EditSweets";
-import Button from "../components/Button";
+import Button from "../components/UI/Button";
 
 const Container = styled.div`
-  ${container}
   padding-bottom: 100px;
 `;
 
