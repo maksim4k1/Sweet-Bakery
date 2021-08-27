@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { gap } from "../styles/mixins";
-import { getAllPastryAction } from "../redux/actions";
+import { getAllPastryAction } from "../redux/actions/actions";
 import EditSweetItem from "./EditSweetItem";
 import ClearList from "./ClearList";
 

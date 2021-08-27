@@ -6,7 +6,7 @@ import removeIcon from "../assets/svg/minus.svg";
 import deleteIcon from "../assets/svg/delete.svg";
 import saveIcon from "../assets/svg/save.svg";
 import { connect } from "react-redux";
-import { editPastryValueAction, getPastryValueAction, setPastryValueAction, getAllPastryAction } from "../redux/actions";
+import { editPastryValueAction, getPastryValueAction, setPastryValueAction, getAllPastryAction, deletePastryAction } from "../redux/actions/actions";
 import EditValueInput from "./UI/EditValueInput";
 
 const Item = styled.li`
@@ -52,7 +52,7 @@ const InStockValue = styled.h5`
   font-size: 18px;
 `;
 
-function EditSweetsItem ({id, name, inStock, cost, getValue, setValue, changedValue, changedInput, editValue, getAllPastry}) {
+function EditSweetsItem ({id, name, inStock, cost, getValue, setValue, changedValue, changedInput, editValue, getAllPastry, deletePasty}) {
   useEffect(() => {
     getAllPastry();
   }, [changedInput, getAllPastry]);
@@ -62,6 +62,9 @@ function EditSweetsItem ({id, name, inStock, cost, getValue, setValue, changedVa
   }
   function editPastryValue(value, type){
     editValue(id, type, value);
+  }
+  function deleteItem() {
+    deletePasty(id);
   }
   function InputHandler(event){
     setValue(event.target.value);
@@ -102,7 +105,7 @@ function EditSweetsItem ({id, name, inStock, cost, getValue, setValue, changedVa
           <Button onClick={() => editPastryValue(inStock + 1, "inStock")}><img src={addIcon} alt="Add" /></Button>
         </InStockValue>
       </Info>
-      <Button><img src={deleteIcon} alt="Delete" /></Button>
+      <Button onClick={deleteItem}><img src={deleteIcon} alt="Delete" /></Button>
     </Item>
   );
 }
@@ -116,6 +119,7 @@ const mapDispatchToProps = {
   getValue: getPastryValueAction,
   setValue: setPastryValueAction,
   editValue: editPastryValueAction,
+  deletePasty: deletePastryAction,
   getAllPastry: getAllPastryAction,
 };
 

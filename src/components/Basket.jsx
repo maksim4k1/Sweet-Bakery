@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import close from "../assets/svg/close-white.svg";
-import { closeBasketAction } from "../redux/actions"
+import { closeBasketAction } from "../redux/actions/appActions"
 import { closeNavigationButton, navigation, navigationContent } from "../styles/mixins";
 import BasketList from "./BasketList";
 

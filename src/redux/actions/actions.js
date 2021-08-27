@@ -1,25 +1,7 @@
-import { CLOSE_BASKET, CLOSE_MENU, GET_ALL_PASTRY, OPEN_BASKET, OPEN_MENU, ADD_PASTRY_TO_BASKET, COUNT_TOTAL, GET_COUNT, GET_PASTRY_VALUE, EDIT_PASTRY_VALUE, SET_PASTRY_VALUE } from "./types";
+import { GET_ALL_PASTRY, ADD_PASTRY_TO_BASKET, COUNT_TOTAL, GET_COUNT, GET_PASTRY_VALUE, EDIT_PASTRY_VALUE, SET_PASTRY_VALUE, DELETE_PASTRY } from "../types";
 
 const URL = "http://localhost:1717/pastry";
 
-export function openMenuAction() {
-  return dispatch => {
-    dispatch({ type: OPEN_MENU });
-    dispatch(closeBasketAction());
-  }
-}
-export function closeMenuAction() {
-  return { type: CLOSE_MENU };
-}
-export function openBasketAction() {
-  return dispatch => {
-    dispatch({ type: OPEN_BASKET });
-    dispatch(closeMenuAction());
-  }
-}
-export function closeBasketAction() {
-  return { type: CLOSE_BASKET };
-}
 export function getAllPastryAction() {
   return async dispatch => {
     const response = await fetch(`${URL}`);
@@ -75,6 +57,14 @@ export function editPastryValueAction(id, type, value){
         [type]: type === "cost" ? Number(value) : value
       })
     });
-    dispatch({ type: EDIT_PASTRY_VALUE, payload: value });
+    dispatch({ type: EDIT_PASTRY_VALUE });
+  }
+}
+export function deletePastryAction(id){
+  return async dispatch => {
+    await fetch(`${URL}/delete/${id}`, {
+      method: "DELETE"
+    });
+    dispatch({ type: DELETE_PASTRY });
   }
 }

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import burger from "../../../assets/svg/burger.svg";
 import basket from "../../../assets/svg/basket.svg";
 import SweetBakery from "../../../assets/svg/SweetBakery.svg";
-import { openMenuAction, openBasketAction } from "../../../redux/actions"
+import { openMenuAction, openBasketAction } from "../../../redux/actions/appActions"
 import Menu from "../../Menu";
 import Basket from "../../Basket";
 import { Link, withRouter } from "react-router-dom";

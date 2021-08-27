@@ -4,7 +4,7 @@ import AppRouters from './components/AppRouters';
 import { withRouter } from 'react-router-dom';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { closeMenuAction, closeBasketAction } from './redux/actions';
+import { closeMenuAction, closeBasketAction } from './redux/actions/appActions';
 import Footer from './components/UI/Footer';
 import styled from 'styled-components';
 import { container } from "./styles/mixins";

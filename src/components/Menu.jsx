@@ -4,7 +4,7 @@ import close from "../assets/svg/close.svg";
 import { Link, withRouter } from "react-router-dom";
 import { gap, navigation, closeNavigationButton, navigationContent } from "../styles/mixins";
 import { connect } from "react-redux";
-import { closeMenuAction } from "../redux/actions"
+import { closeMenuAction } from "../redux/actions/appActions"
 
 const MenuElement = styled.div`
   ${navigation}

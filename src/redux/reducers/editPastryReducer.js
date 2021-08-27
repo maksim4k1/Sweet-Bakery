@@ -1,4 +1,4 @@
-import { EDIT_PASTRY_VALUE, GET_PASTRY_VALUE, SET_PASTRY_VALUE } from "../types";
+import { EDIT_PASTRY_VALUE, GET_PASTRY_VALUE, SET_PASTRY_VALUE, DELETE_PASTRY } from "../types";
 
 const initialEditPastry = {
   changedValue: "",
@@ -21,7 +21,16 @@ function editPastryReducer(state=initialEditPastry, {type, payload}){
       }
     }
     case EDIT_PASTRY_VALUE: {
-      return initialEditPastry;
+      return {
+        ...state,
+        changedInput: {type: "edit"}
+      };;
+    }
+    case DELETE_PASTRY: {
+      return {
+        ...state,
+        changedInput: {type: "delete"}
+      };
     }
     default: {
       return state;

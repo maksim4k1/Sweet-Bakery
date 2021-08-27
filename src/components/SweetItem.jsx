@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { addPastryToBasketAction } from "../redux/actions";
+import { addPastryToBasketAction } from "../redux/actions/actions";
 import { gap } from "../styles/mixins";
 
 const Item = styled.li`
