@@ -16,7 +16,7 @@ const List = styled.ul`
 function EditSweets ({pastry, getAllPastry}) {
   useEffect(() => {
     getAllPastry();
-  }, [getAllPastry]);
+  }, [getAllPastry, pastry]);
 
   return(
     <List>
@@ -32,7 +32,7 @@ function EditSweets ({pastry, getAllPastry}) {
 }
 
 const mapStateToProps = state => ({
-  pastry: state.pastry
+  pastry: state.pastry,
 });
 
 const mapDispatchToProps = {

@@ -1,5 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
+import { editInputValueAction, editCheckboxValueAction, addNewItemAction } from "../redux/actions/actions";
 import { gap } from "../styles/mixins";
 import Button from "./UI/Button";
 import Checkbox from "./UI/Checkbox";
@@ -16,18 +18,42 @@ const Title = styled.h4`
   font-size: 20px;
   text-align: center;
 `;
+const Error = styled.div`
+  margin: 10px 0;
+  color: var(--main-red);
+  text-align: center;
+`;
 
-function Form ({title, formData}) {
+function Form ({title, formData, editValue, editCheckbox, addNewItem, error}) {
+  function inputHandler(event){
+    editValue(event.target.name, event.target.value);
+  }
+  function checkboxHandler(event){
+    editCheckbox(event.target.name, event.target.checked);
+  }
+  function formHandler(event){
+    event.preventDefault();
+    const values = formData.map(item => {
+      if(item.elementType === "input"){
+        return {name: item.name, value: item.value};
+      } else if(item.elementType === "checkbox"){
+        return {name: item.name, value: item.checked};
+      }
+      return undefined;
+    })
+    addNewItem(values);
+  }
+
   return(
-    <FormElement>
+    <FormElement onSubmit={formHandler}>
       <Title>{title}</Title>
       {
         formData && formData.length
         ? formData.map(element => {
           if(element.elementType === "input"){
-            return <Input key={element.id} {...element}/>
+            return <Input key={element.id} placeholder={element.placeholder} name={element.name} value={element.value} type={element.type} editInputValue={inputHandler}/>
           } else if(element.elementType === "checkbox"){
-            return <Checkbox key={element.id} title={element.title} checked={element.checked} toggleCheckbox={() => {}}/>
+            return <Checkbox key={element.id} id={element.id} name={element.name} title={element.title} checked={element.checked} toggleCheckbox={checkboxHandler}/>
           } else if(element.elementType === "subtitle"){
             return <FormSubtitle key={element.id}>{element.title}</FormSubtitle>
           }
@@ -35,9 +61,21 @@ function Form ({title, formData}) {
         })
         : ""
       }
-      <Button type="submit" style={{marginTop: "20px"}}>Add new item</Button>
+      <Error>{error}</Error>
+      <Button type="submit">Add new item</Button>
     </FormElement>
   );
 }
 
-export default Form;
+const mapStateToProps = state => ({
+  formData: state.form.formData,
+  error: state.form.formError,
+});
+
+const mapDispatchToProps = {
+  editValue: editInputValueAction,
+  editCheckbox: editCheckboxValueAction,
+  addNewItem: addNewItemAction,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

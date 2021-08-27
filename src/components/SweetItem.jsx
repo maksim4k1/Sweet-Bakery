@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { addPastryToBasketAction } from "../redux/actions/actions";
+import { addPastryToBasketAction, getAllPastryAction } from "../redux/actions/actions";
 import { gap } from "../styles/mixins";
 
 const Item = styled.li`
@@ -35,6 +35,7 @@ const Image = styled.img`
 const Content = styled.div`
   display: flex;
   flex-flow: column;
+  ${gap("11px")}
   @media screen and (max-width: 610px){
     &{
       ${gap("14px")}
@@ -79,7 +80,7 @@ const Button = styled.button`
 `;
 
 
-function SweetItem ({id, name, image, ingredients, inStock, cost, addToBasket}) {
+function SweetItem ({id, name, image, ingredients, inStock, cost, addToBasket, getAllPastry}) {
   return(
     <Item>
       <Image src={image}/>
@@ -90,19 +91,20 @@ function SweetItem ({id, name, image, ingredients, inStock, cost, addToBasket}) 
       </Content>
       <Button
         style={
-          inStock ? {} : {background: "var(--main-grey)"}
+          inStock <= 0 ? {background: "var(--main-grey)"} : {}
         }
-        disabled={!inStock}
+        disabled={inStock <= 0 ? true : false}
         onClick={() => addToBasket(id)}
       >
-        {inStock ? "Add to cart" : "Not avaliable"}
+        {inStock <= 0 ? "Not avaliable" : "Add to cart"}
       </Button>
     </Item>
   );
 }
 
 const mapDispatchToProps = {
-  addToBasket: addPastryToBasketAction
+  addToBasket: addPastryToBasketAction,
+  getAllPastry: getAllPastryAction
 }
 
 export default connect(null, mapDispatchToProps)(SweetItem);

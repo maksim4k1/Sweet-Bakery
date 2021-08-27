@@ -8,9 +8,9 @@ const InputElement = styled.input`
   border: 1px solid var(--main-border-grey);
 `;
 
-function Input (props) {
+function Input ({name, placeholder, type, value, editInputValue}) {
   return(
-    <InputElement {...props}/>
+    <InputElement name={name} placeholder={placeholder} type={type} value={value} onChange={editInputValue}/>
   );
 }
 

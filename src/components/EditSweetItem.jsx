@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import editIcon from "../assets/svg/edit.svg";
 import addIcon from "../assets/svg/plus.svg";
@@ -6,7 +6,7 @@ import removeIcon from "../assets/svg/minus.svg";
 import deleteIcon from "../assets/svg/delete.svg";
 import saveIcon from "../assets/svg/save.svg";
 import { connect } from "react-redux";
-import { editPastryValueAction, getPastryValueAction, setPastryValueAction, getAllPastryAction, deletePastryAction } from "../redux/actions/actions";
+import { editPastryValueAction, getPastryValueAction, setPastryValueAction, deletePastryAction } from "../redux/actions/actions";
 import EditValueInput from "./UI/EditValueInput";
 
 const Item = styled.li`
@@ -52,11 +52,7 @@ const InStockValue = styled.h5`
   font-size: 18px;
 `;
 
-function EditSweetsItem ({id, name, inStock, cost, getValue, setValue, changedValue, changedInput, editValue, getAllPastry, deletePasty}) {
-  useEffect(() => {
-    getAllPastry();
-  }, [changedInput, getAllPastry]);
-
+function EditSweetsItem ({id, name, inStock, cost, getValue, setValue, changedValue, changedInput, editValue, deletePasty}) {
   function setValueToInput(type){
     getValue(id, type);
   }
@@ -120,7 +116,6 @@ const mapDispatchToProps = {
   setValue: setPastryValueAction,
   editValue: editPastryValueAction,
   deletePasty: deletePastryAction,
-  getAllPastry: getAllPastryAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditSweetsItem);

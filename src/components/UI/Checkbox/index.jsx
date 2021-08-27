@@ -15,7 +15,7 @@ const Label = styled.label`
   position: relative;
   background: var(--main-white);
   border: 1px solid var(--main-border-grey);
-  
+  cursor: pointer;
 `;
 const CheckboxElement = styled.input`
   display: none;
@@ -28,12 +28,12 @@ const CheckboxElement = styled.input`
   }
 `;
 
-function Checkbox ({id, checked, toggleCheckbox, title}) {
+function Checkbox ({id, name, checked, toggleCheckbox, title}) {
   return(
     <Container>
       <h5>{title}</h5>
-        <CheckboxElement id={id} type="checkbox" onChange={toggleCheckbox}/>
-        <Label htmlFor={id}></Label>
+      <CheckboxElement id={id} name={name} type="checkbox" checked={checked} onChange={toggleCheckbox}/>
+      <Label htmlFor={id}></Label>
     </Container>
   );
 }
