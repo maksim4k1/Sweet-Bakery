@@ -2,6 +2,7 @@ import { CLOSE_CREATE_PASTRY_MODAL, OPEN_CREATE_PASTRY_MODAL } from "../types";
 
 const initialModals = {
   isOpenCreatePastryModal: false,
+  bodyOverflowHidden: false,
 }
 
 function modalsReducer(state=initialModals, {type}){
@@ -9,13 +10,15 @@ function modalsReducer(state=initialModals, {type}){
     case OPEN_CREATE_PASTRY_MODAL: {
       return {
         ...state,
-        isOpenCreatePastryModal: true
+        isOpenCreatePastryModal: true,
+        bodyOverflowHidden: true,
       }
     }
     case CLOSE_CREATE_PASTRY_MODAL: {
       return {
         ...state,
-        isOpenCreatePastryModal: false
+        isOpenCreatePastryModal: false,
+        bodyOverflowHidden: false,
       }
     }
     default: {

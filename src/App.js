@@ -19,14 +19,14 @@ const Content = styled.div`
   margin-bottom: 150px;
 `;
 
-function App({location, closeMenu, closeBasket}) {
+function App({location, closeMenu, closeBasket, bodyOverflowHidden}) {
   useEffect(() => {
     closeMenu();
     closeBasket();
   }, [location, closeMenu, closeBasket]);
 
   return (
-    <AppBody>
+    <AppBody style={bodyOverflowHidden ? {height: "100vh", overflow: "hidden"} : {overflow: "auto"}}>
       <Header/>
       <Content>
         <AppRouters/>
@@ -40,9 +40,13 @@ function App({location, closeMenu, closeBasket}) {
   );
 }
 
+const mapStateToProps = state => ({
+  bodyOverflowHidden: state.app.modals.bodyOverflowHidden,
+});
+
 const mapDispatchToProps = {
   closeMenu: closeMenuAction,
   closeBasket: closeBasketAction,
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(App));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));
