@@ -1,4 +1,4 @@
-import { CLOSE_BASKET, CLOSE_MENU, OPEN_BASKET, OPEN_MENU } from "../types";
+import { CLOSE_BASKET, CLOSE_MENU, OPEN_BASKET, OPEN_CREATE_PASTRY_MODAL, CLOSE_CREATE_PASTRY_MODAL, OPEN_MENU } from "../types";
 
 export function openMenuAction() {
   return dispatch => {
@@ -17,4 +17,10 @@ export function openBasketAction() {
 }
 export function closeBasketAction() {
   return { type: CLOSE_BASKET };
+}
+export function openCreatePastryModalAction(){
+  return { type: OPEN_CREATE_PASTRY_MODAL };
+}
+export function closeCreatePastryModalAction(){
+  return { type: CLOSE_CREATE_PASTRY_MODAL };
 }
