@@ -8,6 +8,7 @@ import { closeMenuAction, closeBasketAction } from './redux/actions/appActions';
 import Footer from './components/UI/Footer';
 import styled from 'styled-components';
 import { container } from "./styles/mixins";
+import { URL } from './routers/routers';
 
 const AppBody = styled.div`
   min-height: 100vh;
@@ -32,7 +33,7 @@ function App({location, closeMenu, closeBasket, bodyOverflowHidden}) {
         <AppRouters/>
       </Content>
       {
-        location.pathname !== "/admin"
+        location.pathname !== `${URL}/admin`
         ? <Footer/>
         : ""
       }

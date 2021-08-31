@@ -8,6 +8,7 @@ import { openMenuAction, openBasketAction } from "../../../redux/actions/appActi
 import Menu from "../../Menu";
 import Basket from "../../Basket";
 import { Link, withRouter } from "react-router-dom";
+import { URL } from "../../../routers/routers";
 
 const HeaderElement = styled.header`
   width: 100%;
@@ -72,11 +73,11 @@ function Header ({openMenu, openBasket, count, location}) {
           <img src={burger} alt="Menu" />
         </MenuButton>
         <Menu/>
-        <Link to="/">
+        <Link to={`${URL}/`}>
           <Logo src={SweetBakery} alt="Sweet Bakery" />
         </Link>
         {
-          location.pathname !== "/admin"
+          location.pathname !== `${URL}/admin`
           ? <BasketButton onClick={openBasket}>
             <img src={basket} alt="Basket" />
             <BasketCount>{count}</BasketCount>

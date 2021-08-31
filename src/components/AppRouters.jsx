@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import routers from "../routers/routers";
+import routers, { URL } from "../routers/routers";
 
 function AppRouters () {
   return(
@@ -10,7 +10,7 @@ function AppRouters () {
           return <Route key={index} path={path} component={component} exact={exact} />
         })
       }
-      <Redirect to="/error/404"/>
+      <Redirect to={`${URL}/error/404`}/>
     </Switch>
   );
 }
