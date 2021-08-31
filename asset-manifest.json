@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Sweet-Bakery-React/static/css/main.d433d4a9.chunk.css",
-    "main.js": "/Sweet-Bakery-React/static/js/main.79be566a.chunk.js",
-    "main.js.map": "/Sweet-Bakery-React/static/js/main.79be566a.chunk.js.map",
+    "main.js": "/Sweet-Bakery-React/static/js/main.27ac4038.chunk.js",
+    "main.js.map": "/Sweet-Bakery-React/static/js/main.27ac4038.chunk.js.map",
     "runtime-main.js": "/Sweet-Bakery-React/static/js/runtime-main.cf437a8b.js",
     "runtime-main.js.map": "/Sweet-Bakery-React/static/js/runtime-main.cf437a8b.js.map",
     "static/js/2.f27fa506.chunk.js": "/Sweet-Bakery-React/static/js/2.f27fa506.chunk.js",
@@ -26,6 +26,6 @@
     "static/js/runtime-main.cf437a8b.js",
     "static/js/2.f27fa506.chunk.js",
     "static/css/main.d433d4a9.chunk.css",
-    "static/js/main.79be566a.chunk.js"
+    "static/js/main.27ac4038.chunk.js"
   ]
 }
