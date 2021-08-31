@@ -5,6 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 import { gap, navigation, closeNavigationButton, navigationContent } from "../styles/mixins";
 import { connect } from "react-redux";
 import { closeMenuAction } from "../redux/actions/appActions"
+import { URL } from "../routers/routers";
 
 const MenuElement = styled.div`
   ${navigation}
@@ -68,9 +69,9 @@ function Menu ({isOpenMenu, closeMenu, location}) {
         </Info>
         <MenuLink>
           {
-            location.pathname !== "/admin"
-            ? <Link to="/admin">Go to admin page</Link>
-            : <Link to="/">Go to main page</Link>
+            location.pathname !== `${URL}/admin`
+            ? <Link to={`${URL}/admin`}>Go to admin page</Link>
+            : <Link to={`${URL}/`}>Go to main page</Link>
           }
         </MenuLink>
       </Content>
